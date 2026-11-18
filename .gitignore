@@ -1,10 +1,44 @@
-.DS_Store
+# Python cache files
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
-.venv/
+*.py[cod]
+*$py.class
+
+# Virtual environments
 venv/
 env/
-model2/saved_model/checkpoint-*/
-model2/saved_model/model.safetensors
+.venv/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# IDE settings
+.vscode/
+.idea/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Logs and temporary files
+*.log
+temp/
+tmp/
+
+# Model checkpoints and large weights
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.onnx
+
+# Generated cache and build files
+build/
+dist/
+*.egg-info/

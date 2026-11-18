@@ -1,0 +1,17 @@
+# Core libraries
+numpy
+pandas
+scikit-learn
+
+# Deep learning
+torch
+
+# NLP and transformer models
+transformers
+tokenizers
+
+# PDF processing
+pypdf
+
+# API and HTTP requests
+requests

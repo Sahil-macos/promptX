@@ -1,0 +1,14 @@
+TEST 1:
+Explain the difference between Artificial Intelligence, Machine Learning, and Deep Learning. Give one simple real-world example of each.
+
+TEST 3:
+What is photosynthesis? Explain the process in simple terms and mention why it is important for plants.
+
+TEST 5:
+Explain what password hashing is and why it is used in cybersecurity.
+
+TEST 7:
+Explain the difference between an array and a linked list in data structures. Include their advantages and disadvantages.
+
+TEST 10:
+Explain the concept of binary search in computer science. Describe how it works and give a simple example using a sorted array.
