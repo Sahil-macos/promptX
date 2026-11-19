@@ -36,14 +36,13 @@ import requests
 # PATHS
 # ============================================================
 
-BASE_DIR = Path(
-    "/Users/sahilbaliyan/Documents/prompt injection"
-)
+BASE_DIR = Path(__file__).resolve().parents[2]
 
-MODEL1_DIR = BASE_DIR / "model1"
+MODEL1_DIR = BASE_DIR / "models" / "model1"
 
 MODEL2_DIR = (
     BASE_DIR /
+    "models" /
     "model2" /
     "saved_model"
 )

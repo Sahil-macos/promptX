@@ -3,11 +3,16 @@ from flask_cors import CORS
 import sys
 import os
 import tempfile
+from pathlib import Path
 
-# Add parent directory to path to import project modules
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Add the source and model directories so the API works from any checkout path.
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+SOURCE_DIR = PROJECT_ROOT / 'src'
+MODELS_DIR = PROJECT_ROOT / 'models'
+sys.path.insert(0, str(MODELS_DIR))
+sys.path.insert(0, str(SOURCE_DIR))
 
-from input_handler import handle_input
+from pdf_processing.input_handler import handle_input
 from model1.security_gateway import security_check
 import pandas as pd
 
