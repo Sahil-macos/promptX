@@ -1,5 +1,6 @@
 from pathlib import Path
 import sys
+import os
 import requests
 
 
@@ -89,13 +90,15 @@ MAX_LENGTH = 128
 # LLAMA CONFIGURATION
 # ============================================================
 
+CLOUDFLARE_ACCOUNT_ID = os.getenv("CLOUDFLARE_ACCOUNT_ID", "")
+CLOUDFLARE_API_TOKEN = os.getenv("CLOUDFLARE_API_TOKEN", "")
+
 LLAMA_URL = (
-    "http://127.0.0.1:8080/v1/chat/completions"
+    f"https://api.cloudflare.com/client/v4/accounts/"
+    f"{CLOUDFLARE_ACCOUNT_ID}/ai/v1/chat/completions"
 )
 
-LLAMA_MODEL = (
-    "Llama-3.2-3B-Instruct-Q4_K_M"
-)
+LLAMA_MODEL = "@cf/meta/llama-3.1-8b-instruct-fast"
 
 LLAMA_TIMEOUT = 120
 
@@ -156,19 +159,11 @@ print(
 # ============================================================
 
 def check_llama_server():
-
-    try:
-
-        response = requests.get(
-            "http://127.0.0.1:8080/health",
-            timeout=5
-        )
-
-        return response.status_code == 200
-
-    except requests.RequestException:
-
-        return False
+    
+    return bool(
+        CLOUDFLARE_ACCOUNT_ID and
+        CLOUDFLARE_API_TOKEN
+    )
 
 
 # ============================================================
@@ -180,9 +175,8 @@ def generate_llama_response(prompt):
     if not check_llama_server():
 
         return (
-            "ERROR: Llama server is not running. "
-            "Start llama-server first."
-        )
+    "ERROR: Cloudflare Llama configuration is missing."
+)
 
     payload = {
 
@@ -219,12 +213,17 @@ def generate_llama_response(prompt):
 
         response = requests.post(
 
-            LLAMA_URL,
+    LLAMA_URL,
 
-            json=payload,
+    headers={
+        "Authorization": f"Bearer {CLOUDFLARE_API_TOKEN}",
+        "Content-Type": "application/json"
+    },
 
-            timeout=LLAMA_TIMEOUT
-        )
+    json=payload,
+
+    timeout=LLAMA_TIMEOUT
+)
 
         response.raise_for_status()
 
@@ -253,9 +252,9 @@ def generate_llama_response(prompt):
     ):
 
         return (
-            "LLM ERROR: Unexpected response "
-            "from Llama server."
-        )
+    "LLM ERROR: Unexpected response "
+    "from Cloudflare Llama API."
+)
 
 
 # ============================================================

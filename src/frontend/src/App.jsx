@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react'
 import { Shield, FileText, Upload, BarChart3, Activity, AlertTriangle, CheckCircle } from 'lucide-react'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from './components/ui/card'
@@ -6,6 +7,8 @@ import { Textarea } from './components/ui/textarea'
 import { Input } from './components/ui/input'
 import { Badge } from './components/ui/badge'
 import MetricsDashboard from './components/MetricsDashboard'
+
+const API_BASE_URL = import.meta.env.VITE_API_URL || ''
 
 function App() {
   const [inputType, setInputType] = useState('text')
@@ -22,7 +25,7 @@ function App() {
 
   const fetchMetrics = async () => {
     try {
-      const response = await fetch('/api/metrics')
+      const response = await fetch(`${API_BASE_URL}/api/metrics`)
       const data = await response.json()
       setMetrics(data)
     } catch (err) {
@@ -44,7 +47,7 @@ function App() {
           data: textInput
         }
 
-        response = await fetch('/api/analyze', {
+        response = await fetch(`${API_BASE_URL}/api/analyze`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -56,7 +59,7 @@ function App() {
         const formData = new FormData()
         formData.append('file', pdfFile)
 
-        response = await fetch('/api/analyze-pdf', {
+        response = await fetch(`${API_BASE_URL}/api/analyze-pdf`, {
           method: 'POST',
           body: formData
         })
