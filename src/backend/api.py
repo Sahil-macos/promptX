@@ -65,7 +65,15 @@ def analyze_input():
         if not input_type or not input_data:
             return jsonify({"error": "Missing input type or data"}), 400
 
+        print("[DEBUG] Starting input preprocessing...", flush=True)
+        preprocess_start = time.time()
+
         processed_input = handle_input(input_type, input_data)
+
+        print(
+            f"[DEBUG] Input preprocessing: {time.time() - preprocess_start:.3f}s",
+            flush=True
+        )
 
         start_time = time.time()
         result = security_check(processed_input)
