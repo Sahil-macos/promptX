@@ -23,7 +23,7 @@ LLAMA_URL = (
 )
 
 LLAMA_MODEL = "@cf/meta/llama-3.1-8b-instruct-fast"
-LLAMA_TIMEOUT = 120
+LLAMA_TIMEOUT = 25
 
 
 def check_llama_server():
