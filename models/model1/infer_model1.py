@@ -3,6 +3,9 @@ import json
 import torch
 import torch.nn as nn
 
+torch.set_num_threads(1)
+torch.set_num_interop_threads(1)
+
 
 # ============================================================
 # PATHS
