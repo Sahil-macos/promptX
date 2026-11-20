@@ -22,7 +22,7 @@ sys.path.insert(0, str(SOURCE_DIR))
 # DOWNLOAD MODELS BEFORE IMPORTING SECURITY GATEWAY
 # ============================================================
 
-from model_downloader import download_models
+from model_downloader_demo import download_models
 
 download_models()
 
@@ -31,7 +31,7 @@ download_models()
 # ============================================================
 
 from pdf_processing.input_handler import handle_input
-from model1.security_gateway import security_check
+from model1.security_gateway_demo import security_check
 
 # ============================================================
 # FLASK APPLICATION
