@@ -74,9 +74,10 @@ def analyze_input():
             f"[DEBUG] Input preprocessing: {time.time() - preprocess_start:.3f}s",
             flush=True
         )
-
+        print("[DEBUG] Entering security gateway...", flush=True)
         start_time = time.time()
         result = security_check(processed_input)
+        print("[DEBUG] Security gateway returned.", flush=True)
         gateway_time_ms = (time.time() - start_time) * 1000
 
         mapped_result = {
